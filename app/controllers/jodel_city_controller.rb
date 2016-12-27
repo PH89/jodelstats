@@ -9,7 +9,11 @@ class JodelCityController < ApplicationController
     if ENV["jodelstats_success_message"]
       flash.now[:success] = ENV["jodelstats_success_message"]
     end
-    @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
+    if params[:format] == "json"
+      @jodel_cities = JodelCity.where('country=? OR country=?', params[:country_name], "all").order(highest_votes: :desc)
+    else
+      @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
+    end
     redirect_to "/?locale=#{I18n.locale}" and return if @jodel_cities.empty?
     respond_to do |format|
       format.html
@@ -93,7 +97,7 @@ class JodelCityController < ApplicationController
     cities.each do |city|
       if city.country == nil
         city.destroy
-      else
+      elsif city.country != "all"
         self.update_city(city)
         sleep((ENV["jodelstats_sleep_seconds"] || 20).to_i)
       end
