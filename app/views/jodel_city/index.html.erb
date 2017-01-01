@@ -1,26 +1,14 @@
 <% provide(:title, t('main_title')) %>
 <div class="left">
-<h2><%= t('top_posts_header') %> – <%= full_country_name(params[:country_name]) %></h2>
+<h2>Jodel Stats is offline :(</h2>
 <br>
 <div class="row">
-  <% counter = 0 %>
-  <% @jodel_cities.each_with_index do |city, i| %>
-        <%= render 'row_seperator', i: i%>
-        <div class="col-md-4">
-          <% jodel = city.first_jodel || JodelPost.new(
-          message: t('no_jodel_found'), color: '404040', vote_count: 0
-          ) %>
-
-          <b><%=link_to(city.name, "/cities/" + city.name + locale_param, title: t(:city_description) + ' ' + city.name)%></b>
-          <%= t('top_jodel_description_1') %>
-          <b><%=jodel.vote_count%></b>
-          <%= t('top_jodel_description_2') %>
-          <br>
-
-          <%= render 'jodel_post', city: city, jodel: jodel %>
-          <% counter = i %>
-        </div>
-  <% end %>
-  <%= render 'recommendations', locals: { i: counter, name: params[:country_name], country: true } %>
+  <div class="col-md-12">
+    <p class="big-text">I'm very sorry to announce that Jodel Stats is <b>offline</b> as of January 1, 2017.</p>
+    <p class="big-text"><a href="">Read the official announcement!</a></p>
+    <p class="big-text">If you'd like to keep in touch: <a href="http://twitter.com/ppati000">Twtter</a> |
+    <a href="https://www.facebook.com/patrick.petrovic">Facebook</a></p>
+    <p class=""
+  </div>
 </div>
 </div>

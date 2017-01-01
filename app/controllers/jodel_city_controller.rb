@@ -10,7 +10,7 @@ class JodelCityController < ApplicationController
       flash.now[:success] = ENV["jodelstats_success_message"]
     end
     if params[:format] == "json"
-      @jodel_cities = JodelCity.where('country=? OR country=?', params[:country_name], "all").order(highest_votes: :desc)
+      @jodel_cities = JodelCity.where('country=?', "all").order(highest_votes: :desc)
     else
       @jodel_cities = JodelCity.where(country: params[:country_name]).order(highest_votes: :desc)
     end

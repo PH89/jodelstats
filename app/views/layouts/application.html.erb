@@ -38,48 +38,29 @@
           <%= link_to "Jodel Stats", '/' + locale_param, class: "navbar-brand" %>
         </div>
         <div id="myNavbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to t('germany'),   "/countries/DE?locale=#{I18n.locale}" %></li>
-            <li><%= link_to t('austria'),   "/countries/AT?locale=#{I18n.locale}" %></li>
-            <li><%= link_to t('switzerland'),   "/countries/CH?locale=#{I18n.locale}" %></li>
-            <li><%= link_to t('netherlands'), "/countries/NL?locale=#{I18n.locale}"%></li>
-            <li>
-              <%= link_to search_path do %>
 
-                <span class="glyphicon glyphicon-search"></span> <%= t('search') %>
-
-              <% end %>
-            </li>
-            <% if I18n.locale == :de %>
-              <li>
-                <%= link_to image_tag('en.svg', class: "language", size: "20x15", alt: "English"),
-                alt_language_path, class: "language_link", title: "Switch language to English"%>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to image_tag('de.svg', class: "language", size: "20x15", alt: "German"),
-                alt_language_path, class: "language_link", title: "Switch language to German"%>
-              </li>
-            <% end %>
-          </ul>
         </div>
       </div>
     </header>
       <div class="container">
-        <div class="alert alert-danger">I'm sorry to announce that Jodel Stats will be shutting down on January 1, 2017. <a href="https://www.facebook.com/notes/patrick-petrovic/jodel-stats-shutting-down-heres-why/361625077550142"><b>Read why.</b></a></div>
         <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type == "error" ? "danger" : message_type %>"><%= message %></div>
         <% end %>
-        <%= yield %>
-        <hr>
-        <div class="legal">
-          <%= link_to("Jodel Stats für Android – Jetzt im Play Store laden!", "https://play.google.com/store/apps/details?id=com.jodelstatsreactnative") %>
-          <%= t('creator') %> ( <a href="https://www.facebook.com/patrick.petrovic">Facebook</a>
-          | <a href="http://twitter.com/ppati000">Twitter</a> | <a href="mailto:ppati000@me.com">Mail</a> ).
-          <%= t('legal_info') %>
-          <a href="https://github.com/ppati000/jodelstats"><%= t('github') %></a>
-          <%= render_shareable :buttons=> ['facebook'] %>
+        <% provide(:title, t('main_title')) %>
+        <div class="left">
+        <h2>Jodel Stats is offline.</h2>
         <br>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="big-text">I'm very sorry to announce that Jodel Stats is <b>offline</b> as of January 1, 2017.</p>
+            <p class="big-text"><a href="https://www.facebook.com/notes/patrick-petrovic/jodel-stats-shutting-down-heres-why/361625077550142">Read the official announcement.</a></p>
+            <p class="big-text">If you'd like to keep in touch: <a href="http://twitter.com/ppati000">Twitter</a> |
+            <a href="https://www.facebook.com/patrick.petrovic">Facebook</a>
+            | <a href="mailto:ppati000@me.com">Mail</a></p>
+            <br>
+            <p class="big-text"><b>Thanks a lot for all of your support! ❤️</b></p>
+          </div>
+        </div>
         </div>
       </div>
 </body>
